@@ -61,15 +61,17 @@ def coll_of_input_phones(message):
     coll = int(message.text)
     numbers = []
     phone = bot.send_message(message.from_user.id, f'Введите номер: ', reply_markup = keyboard1)
-    for i in range(coll):
-        bot.register_next_step_handler(phone , input_phones , numbers,)
-    
-    
-
+    bot.register_next_step_handler(phone, input_phones , numbers)
+    while coll > 0:
+        bot.register_next_step_handler(phone, input_phones , numbers)
+        coll -=1
+# надо доделать тут цикл
 def input_phones(message , numbers):
-    phone = bot.send_message(message.from_user.id, f'Введите следущий номер: ', reply_markup = keyboard1)
+    bot.send_message(message.from_user.id, f'Введите следущий номер: ', reply_markup = keyboard1)
     number = message.text
     numbers.append(number)
     print(numbers)
+
+
 
 bot.polling(none_stop=True)

@@ -79,7 +79,6 @@ def search():
         for key in phones_sp:
             if phones_sp[key]['город'] == city:
                 print(f'{key}: {phones_sp.get(key)}')
-        
     elif what_to_search == 'status':
         status = input('Введите город: ')
         for key in phones_sp:
@@ -90,7 +89,7 @@ def search():
 def delete_contact():
     what_name_delete = input('Введите контакт для его удаления: ')
     if what_name_delete in phones_sp:
-        phones_sp.popitem(what_name_delete)
+        phones_sp.pop(what_name_delete)
         print('Контакт удален.')
     else: print('Контакте не существует.')
     
